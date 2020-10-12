@@ -56,7 +56,12 @@ public class SinglyLinkedList<T> implements List {
 	@Override
 	public void add(int index, Object element) throws IndexOutOfBoundsException //TA note, best way to iterate through this.
 	{
-		// TODO Auto-generated method stub
+		if(index<0 || index>this.elementCount)
+			throw new IndexOutOfBoundsException();
+		if(index==0)
+			addFirst(element);
+		
+		
 		
 	}
 
@@ -70,8 +75,16 @@ public class SinglyLinkedList<T> implements List {
 	@Override
 	public Object getFirst() throws NoSuchElementException 
 	{
-		// TODO Auto-generated method stub
-		return null;
+		if(!this.isEmpty())
+		{
+			return this.head;
+		}
+		else
+		{
+			throw new NoSuchElementException();
+		}
+		
+		
 	}
 
 	/**
@@ -100,8 +113,9 @@ public class SinglyLinkedList<T> implements List {
 	@Override
 	public Object removeFirst() throws NoSuchElementException
 	{
-		// TODO Auto-generated method stub
-		return null;
+		Node temp = this.head;
+		this.head = head.next;
+		return temp;
 	}
 
 	/**
@@ -116,6 +130,10 @@ public class SinglyLinkedList<T> implements List {
 	@Override
 	public Object remove(int index) throws IndexOutOfBoundsException //TA note, best way to interate through this.
 	{
+		if(index<0 || index>this.elementCount)
+			throw new IndexOutOfBoundsException();
+		if(index==0)
+			removeFirst();
 		
 		
 		
@@ -200,9 +218,23 @@ public class SinglyLinkedList<T> implements List {
 	@Override
 	public Iterator iterator() 
 	{
-		Iterator result = (Iterator) head;
-		
-		return null;
+		return new SinglyLinkedListIte();
 	}
 
+	private class SinglyLinkedListIte implements Iterator<T>
+	{
+
+		@Override
+		public boolean hasNext() {
+			// TODO Auto-generated method stub
+			return false;
+		}
+
+		@Override
+		public T next() {
+			// TODO Auto-generated method stub
+			return null;
+		}
+		
+	}
 }
