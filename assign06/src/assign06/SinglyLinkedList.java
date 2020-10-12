@@ -3,6 +3,11 @@ package assign06;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
+/**
+ * 
+ * @author Pratyush Dixit and Jonathan 
+ *
+ */
 public class SinglyLinkedList implements List {
 
 	@Override
