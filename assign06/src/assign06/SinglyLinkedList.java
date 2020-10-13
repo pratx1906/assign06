@@ -51,6 +51,23 @@ public class SinglyLinkedList<T> implements List<T>{
 		head = new Node(element, head); 
 		elementCount++;
 	}
+	
+	/**
+	 * Helper method to retrieve the node occurring in the list before the
+	 * node at the given position.
+	 * 
+	 * NOTE: It is a precondition that pos > 0.
+	 * 
+	 * @param targetIndex 0-indexed position of the node
+	 * @return node at position pos-1
+	 */
+	private Node getPrev(int targetIndex) {
+		Node temp = head;
+		for(int i = 0; i < targetIndex-1; i++)
+			temp = temp.next;
+		return temp;
+	}
+
 
 	/**
 	 * Inserts an element at a specific position in the list.
@@ -67,14 +84,16 @@ public class SinglyLinkedList<T> implements List<T>{
 		if(index<0 || index>this.elementCount)
 			throw new IndexOutOfBoundsException();
 		if(index==0)
-			addFirst(element);	
-		Node temp = head;
-		for(int i=1; i<index ; i++)
 		{
-			temp = temp.next;
+			addFirst(element);	
 		}
-		temp.next= new Node(element,temp.next);
+		else
+		{
+		
+		Node lastNode = getPrev(index);
+		lastNode.next= new Node(element,lastNode.next);
 		elementCount++;
+		}
 		
 	}
 
@@ -95,9 +114,7 @@ public class SinglyLinkedList<T> implements List<T>{
 		else
 		{
 			throw new NoSuchElementException();
-		}
-		
-		
+		}		
 	}
 
 	/**
@@ -112,12 +129,21 @@ public class SinglyLinkedList<T> implements List<T>{
 	@Override
 	public T get(int index) throws IndexOutOfBoundsException 
 	{
-		if(index<0 || index>this.elementCount)
+
+		Node res = head;
+		if(index<0 || index>this.size())
 			throw new IndexOutOfBoundsException();
-		Node result = head;
-				
+		
+		if(index==0)
+		{
+			res.data=getFirst();
+		}
+		else
+			
+		
 		
 		return null;
+		
 	}
 
 	/**
@@ -130,9 +156,16 @@ public class SinglyLinkedList<T> implements List<T>{
 	@Override
 	public T removeFirst() throws NoSuchElementException
 	{
+		if(this.isEmpty())
+		{
+			throw new NoSuchElementException();
+		}
+		else
+		{
 		Node temp = this.head;
 		this.head = head.next;
 		return temp.data;
+		}
 	}
 
 	/**
@@ -152,9 +185,12 @@ public class SinglyLinkedList<T> implements List<T>{
 		if(index==0)
 			removeFirst();
 		
-		
-		
-		return null;
+		Node prev = getPrev(index);
+		Node temp = prev;
+		Node curr = temp.next;
+		prev.next = curr.next;
+		elementCount--;
+		return curr.data;
 	}
 
 	/**
@@ -224,14 +260,12 @@ public class SinglyLinkedList<T> implements List<T>{
 	@Override
 	public Object[] toArray() //TA note, best way to interate through this.
 	{
-		Object[] result = new Object[elementCount];
-		
-		for(int i = 0; i < elementCount; i++)
-		{
-			//result[i] = 
-		}
-		
-		return result;
+//		Object[] result = new Object[elementCount];
+//		Node temp = head;
+//		for(int i=0;i<result.length;i++)
+//		
+//		return result;
+		return null;
 	}
 
 	/**
@@ -246,9 +280,7 @@ public class SinglyLinkedList<T> implements List<T>{
 
 	private class SinglyLinkedListIte implements Iterator<T>
 	{
-
-		private Node curr;
-		
+	private Node curr;	
 		public SinglyLinkedListIte()
 		{
 			this.curr=head;
@@ -265,14 +297,19 @@ public class SinglyLinkedList<T> implements List<T>{
 			return temp;
 		}
 		
+		@Override
+		public T remove()
+		{
+			return null;
+		}
+		
+		
 		/** 
 		 * Generates and returns a textual representation of the integers in this
 		 * linked list, in order.
 		 */
 		public String toString() {
-			// StringBuilder's append method is faster than String concatenation with + 
-			// because StringBuilder objects are mutable and String objects are immutable. 
-			// See https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/StringBuilder.html.
+			
 			StringBuilder result = new StringBuilder();
 			Node temp = head;
 			while(temp != null) {
@@ -287,7 +324,7 @@ public class SinglyLinkedList<T> implements List<T>{
 
 		SinglyLinkedList<Integer> l = new SinglyLinkedList<>();
 		l.addFirst(2);
-		l.toString();
+		System.out.println(l.toString());
 		
 }
 }
