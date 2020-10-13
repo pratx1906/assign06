@@ -9,16 +9,16 @@ import java.util.NoSuchElementException;
  * @param <T>
  *
  */
-public class SinglyLinkedList<T> implements List {
+public class SinglyLinkedList<T> implements List<T>{
 
 	private Node head;
 	private int elementCount;
 	
 	private class Node 
 	{
-		public Object data;
+		public T data;
 		public Node next;
-		public Node(Object data, Node next)
+		public Node(T data, Node next)
 		{
 			this.data = data;
 			this.next = next;
@@ -38,9 +38,9 @@ public class SinglyLinkedList<T> implements List {
 	 * @param element - the element to add
 	 */
 	@Override
-	public void addFirst(Object element) 
+	public void addFirst(T element) 
 	{
-		head = new Node(element, head); //TA note, will this cause an error?
+		head = new Node(element, head); 
 		elementCount++;
 	}
 
@@ -54,14 +54,18 @@ public class SinglyLinkedList<T> implements List {
 	 * (index < 0 || index > size())
 	 */
 	@Override
-	public void add(int index, Object element) throws IndexOutOfBoundsException //TA note, best way to iterate through this.
+	public void add(int index, T element) throws IndexOutOfBoundsException //TA note, best way to iterate through this.
 	{
 		if(index<0 || index>this.elementCount)
 			throw new IndexOutOfBoundsException();
 		if(index==0)
 			addFirst(element);
 		
-		
+		Node temp = head;
+		for(int i=1; i<=index ; i++)
+		{
+			temp = temp.next;
+		}
 		
 	}
 
@@ -73,11 +77,11 @@ public class SinglyLinkedList<T> implements List {
 	 * @throws NoSuchElementException if the list is empty
 	 */
 	@Override
-	public Object getFirst() throws NoSuchElementException 
+	public T getFirst() throws NoSuchElementException 
 	{
 		if(!this.isEmpty())
 		{
-			return this.head;
+			return this.head.data;
 		}
 		else
 		{
@@ -97,9 +101,9 @@ public class SinglyLinkedList<T> implements List {
 	 * (index < 0 || index >= size())
 	 */
 	@Override
-	public Object get(int index) throws IndexOutOfBoundsException //TA note, best way to iterate through this.
+	public T get(int index) throws IndexOutOfBoundsException //TA note, best way to iterate through this.
 	{
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
@@ -111,11 +115,11 @@ public class SinglyLinkedList<T> implements List {
 	 * @throws NoSuchElementException if the list is empty
 	 */
 	@Override
-	public Object removeFirst() throws NoSuchElementException
+	public T removeFirst() throws NoSuchElementException
 	{
 		Node temp = this.head;
 		this.head = head.next;
-		return temp;
+		return temp.data;
 	}
 
 	/**
@@ -128,7 +132,7 @@ public class SinglyLinkedList<T> implements List {
 	 * (index < 0 || index >= size())
 	 */
 	@Override
-	public Object remove(int index) throws IndexOutOfBoundsException //TA note, best way to interate through this.
+	public T remove(int index) throws IndexOutOfBoundsException //TA note, best way to interate through this.
 	{
 		if(index<0 || index>this.elementCount)
 			throw new IndexOutOfBoundsException();
@@ -149,11 +153,17 @@ public class SinglyLinkedList<T> implements List {
 	 * @return the index of the first occurrence; -1 if the element is not found
 	 */
 	@Override
-	public int indexOf(Object element) //TA note, best way to interate through this.
+	public int indexOf(Object element) 
 	{
-		for(int i = 0; i < elementCount; i++)
+		int indexCheck =0 ;
+		Node temp = head;
+		while(temp!=null)
 		{
-			result[i] = 
+			if(temp.data.equals(element))
+				return indexCheck;
+			else
+				indexCheck++;
+			temp=temp.next;
 		}
 		return -1;
 	}
@@ -205,7 +215,7 @@ public class SinglyLinkedList<T> implements List {
 		
 		for(int i = 0; i < elementCount; i++)
 		{
-			result[i] = 
+			//result[i] = 
 		}
 		
 		return result;
@@ -216,7 +226,7 @@ public class SinglyLinkedList<T> implements List {
 	 * (from first element to last element)
 	 */
 	@Override
-	public Iterator iterator() 
+	public Iterator<T> iterator() 
 	{
 		return new SinglyLinkedListIte();
 	}
@@ -224,17 +234,24 @@ public class SinglyLinkedList<T> implements List {
 	private class SinglyLinkedListIte implements Iterator<T>
 	{
 
+		private Node curr;
+		
+		public SinglyLinkedListIte()
+		{
+			this.curr=head;
+		}
 		@Override
-		public boolean hasNext() {
-			// TODO Auto-generated method stub
-			return false;
+		public boolean hasNext() {			
+			return curr!=null;
 		}
 
 		@Override
 		public T next() {
-			// TODO Auto-generated method stub
-			return null;
+			T temp = curr.data;		
+			curr = curr.next;
+			return temp;
 		}
+		
 		
 	}
 }
