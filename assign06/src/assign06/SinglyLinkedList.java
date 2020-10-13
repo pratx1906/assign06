@@ -7,10 +7,10 @@ import java.util.NoSuchElementException;
 /**
  * 
  * @author Dixit && Krummenacher
- * @param <T>
+ * @param <E>
  *
  */
-public class SinglyLinkedList<T> implements List<T>{
+public class SinglyLinkedList<E> implements List<E>{
 
 	/**
 	 * Private Helper class to create nodes which are used to store data in Linked List and reference to the next node
@@ -19,9 +19,9 @@ public class SinglyLinkedList<T> implements List<T>{
 	 */
 	private class Node 
 	{
-		public T data;
+		public E data;
 		public Node next;
-		public Node(T data, Node next)
+		public Node(E data, Node next)
 		{
 			this.data = data;
 			this.next = next;
@@ -47,7 +47,7 @@ public class SinglyLinkedList<T> implements List<T>{
 	 * @param element - the element to add
 	 */
 	@Override
-	public void addFirst(T element) 
+	public void addFirst(E element) 
 	{
 		head = new Node(element, head); 
 		elementCount++;
@@ -80,7 +80,7 @@ public class SinglyLinkedList<T> implements List<T>{
 	 * (index < 0 || index > size())
 	 */
 	@Override
-	public void add(int index, T element) throws IndexOutOfBoundsException //TA note, best way to iterate through this.
+	public void add(int index, E element) throws IndexOutOfBoundsException //TA note, best way to iterate through this.
 	{
 		if(index<0 || index>this.elementCount)
 			throw new IndexOutOfBoundsException();
@@ -106,7 +106,7 @@ public class SinglyLinkedList<T> implements List<T>{
 	 * @throws NoSuchElementException if the list is empty
 	 */
 	@Override
-	public T getFirst() throws NoSuchElementException 
+	public E getFirst() throws NoSuchElementException 
 	{
 		if(!this.isEmpty())
 		{
@@ -128,7 +128,7 @@ public class SinglyLinkedList<T> implements List<T>{
 	 * (index < 0 || index >= size())
 	 */
 	@Override
-	public T get(int index) throws IndexOutOfBoundsException 
+	public E get(int index) throws IndexOutOfBoundsException 
 	{
 
 		Node res = head;
@@ -157,7 +157,7 @@ public class SinglyLinkedList<T> implements List<T>{
 	 * @throws NoSuchElementException if the list is empty
 	 */
 	@Override
-	public T removeFirst() throws NoSuchElementException
+	public E removeFirst() throws NoSuchElementException
 	{
 		if(this.isEmpty())
 		{
@@ -181,7 +181,7 @@ public class SinglyLinkedList<T> implements List<T>{
 	 * (index < 0 || index >= size())
 	 */
 	@Override
-	public T remove(int index) throws IndexOutOfBoundsException //TA note, best way to interate through this.
+	public E remove(int index) throws IndexOutOfBoundsException //TA note, best way to interate through this.
 	{
 		if(index<0 || index>this.elementCount)
 			throw new IndexOutOfBoundsException();
@@ -280,12 +280,12 @@ public class SinglyLinkedList<T> implements List<T>{
 	 * (from first element to last element)
 	 */
 	@Override
-	public Iterator<T> iterator() 
+	public Iterator<E> iterator() 
 	{
 		return new SinglyLinkedListIte(head);
 	}
 
-	private class SinglyLinkedListIte implements Iterator<T>
+	private class SinglyLinkedListIte implements Iterator<E>
 	{
 		private Node curr;
 		private Node prev;
@@ -308,9 +308,9 @@ public class SinglyLinkedList<T> implements List<T>{
 		 * 
 		 */
 		@Override
-		public T next() 
+		public E next() 
 		{
-			T temp = curr.data;		
+			E temp = curr.data;		
 			prev = curr;
 			if(!hasNext())
 				throw new NoSuchElementException();
