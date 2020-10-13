@@ -13,16 +13,16 @@ class SinglyLinkedListTester {
 		assertEquals(test.getFirst(),1);
 		
 	}
-//	@Test
-//	void addFirstTest1() {
-//		SinglyLinkedList<Integer> test = new SinglyLinkedList<>();
-//		
-//		test.add(0, 1);
-//		test.add(1, 3);
-//		test.add(2, 4);
-//		test.add(3, 7);
-//		assertEquals(test.get(0),4);
-//	}
+	@Test
+	void addFirstTest1() {
+		SinglyLinkedList<Integer> test = new SinglyLinkedList<>();
+		
+		test.add(0, 1);
+		test.add(1, 3);
+		test.add(2, 4);
+		test.add(3, 7);
+		assertEquals(test.get(0),1);
+	}
 	
 	@Test
 	void add() {
@@ -30,6 +30,7 @@ class SinglyLinkedListTester {
 		test.add(0,0);
 		test.add(1,2);
 		test.add(2,3);
+		
 		assertEquals(test.get(0),0);
 		
 	}

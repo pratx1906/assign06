@@ -139,10 +139,12 @@ public class SinglyLinkedList<T> implements List<T>{
 			res.data=getFirst();
 		}
 		else
+		{
+			res = getPrev(index);
+			res = res.next;
 			
-		
-		
-		return null;
+		}
+		return res.data;
 		
 	}
 
