@@ -1,5 +1,6 @@
 package assign06;
 
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
@@ -262,12 +263,16 @@ public class SinglyLinkedList<T> implements List<T>{
 	@Override
 	public Object[] toArray() //TA note, best way to interate through this.
 	{
-//		Object[] result = new Object[elementCount];
-//		Node temp = head;
-//		for(int i=0;i<result.length;i++)
-//		
-//		return result;
-		return null;
+		Object[] result = new Object[elementCount];
+		
+		Node temp = head;
+		for(int i = 0; i < elementCount; i++)
+		{
+			result[i] = temp.data;
+			temp = temp.next;
+		}
+		
+		return result;
 	}
 
 	/**
@@ -277,32 +282,57 @@ public class SinglyLinkedList<T> implements List<T>{
 	@Override
 	public Iterator<T> iterator() 
 	{
-		return new SinglyLinkedListIte();
+		return new SinglyLinkedListIte(head);
 	}
 
 	private class SinglyLinkedListIte implements Iterator<T>
 	{
-	private Node curr;	
-		public SinglyLinkedListIte()
+		private Node curr;
+		private Node prev;
+	
+		public SinglyLinkedListIte(Node current)
 		{
-			this.curr=head;
+			this.curr = current;
 		}
+		
+		/**
+		 * 
+		 */
 		@Override
-		public boolean hasNext() {			
-			return curr!=null;
+		public boolean hasNext() 
+		{			
+			return curr != null;
 		}
 
+		/**
+		 * 
+		 */
 		@Override
-		public T next() {
+		public T next() 
+		{
 			T temp = curr.data;		
-			curr = curr.next;
-			return temp;
+			prev = curr;
+			if(!hasNext())
+				throw new NoSuchElementException();
+			else
+			{
+				curr = curr.next;
+				return temp;
+			}
+			
 		}
 		
 		@Override
-		public T remove()
-		{
-			return null;
+		public void remove()	//TA note: Check the logic required to delete an object in memory.
+		{			
+			prev.next = curr.next;
+			
+			if(!hasNext())
+				throw new NoSuchElementException();
+			else
+			{
+				curr = curr.next;
+			}
 		}
 		
 		
@@ -326,7 +356,11 @@ public class SinglyLinkedList<T> implements List<T>{
 
 		SinglyLinkedList<Integer> l = new SinglyLinkedList<>();
 		l.addFirst(2);
-		System.out.println(l.toString());
+		l.add(1, 2);
+		l.add(2, 3);
+		l.add(3, 5);
+		l.add(2, 35);
+		System.out.println(Arrays.toString(l.toArray()));
 		
 }
 }
