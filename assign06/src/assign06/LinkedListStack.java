@@ -8,7 +8,7 @@ import java.util.NoSuchElementException;
  *
  * @param <E>
  */
-public class LinkedListStack<E> implements Stack {
+public class LinkedListStack<E> implements Stack<E> {
 
 	private SinglyLinkedList theStack;
 	
@@ -44,7 +44,10 @@ public class LinkedListStack<E> implements Stack {
 	 */
 	public E peek() throws NoSuchElementException
 	{
-		return (E) this.theStack.getFirst();
+		if(isEmpty())
+			throw new NoSuchElementException();
+		else
+			return (E) this.theStack.getFirst();
 	}
 
 	/**
@@ -55,6 +58,8 @@ public class LinkedListStack<E> implements Stack {
 	 */
 	public E pop() throws NoSuchElementException
 	{
+		if(isEmpty())
+			throw new NoSuchElementException();
 		return (E) this.theStack.removeFirst();
 	}
 
@@ -77,12 +82,6 @@ public class LinkedListStack<E> implements Stack {
 		return this.theStack.size();
 	}
 
-	@Override
-	public void push(Object element)
-	{
-		// TODO Auto-generated method stub
-		
-	}
 
 	
 
