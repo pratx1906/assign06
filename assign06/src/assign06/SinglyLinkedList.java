@@ -11,9 +11,11 @@ import java.util.NoSuchElementException;
  */
 public class SinglyLinkedList<T> implements List<T>{
 
-	private Node head;
-	private int elementCount;
-	
+	/**
+	 * Private Helper class to create nodes which are used to store data in Linked List and reference to the next node
+	 * 
+	 *
+	 */
 	private class Node 
 	{
 		public T data;
@@ -24,7 +26,13 @@ public class SinglyLinkedList<T> implements List<T>{
 			this.next = next;
 		}
 	}
+	//Instances Variables
+	private Node head;
+	private int elementCount;
 	
+	/**
+	 * Constructor to generate SinglyLinkList . intiallzes the intsnace variables .
+	 */
 	public SinglyLinkedList()
 	{
 		this.head = null;
@@ -59,13 +67,14 @@ public class SinglyLinkedList<T> implements List<T>{
 		if(index<0 || index>this.elementCount)
 			throw new IndexOutOfBoundsException();
 		if(index==0)
-			addFirst(element);
-		
+			addFirst(element);	
 		Node temp = head;
-		for(int i=1; i<=index ; i++)
+		for(int i=1; i<index ; i++)
 		{
 			temp = temp.next;
 		}
+		temp.next= new Node(element,temp.next);
+		elementCount++;
 		
 	}
 
@@ -101,8 +110,12 @@ public class SinglyLinkedList<T> implements List<T>{
 	 * (index < 0 || index >= size())
 	 */
 	@Override
-	public T get(int index) throws IndexOutOfBoundsException //TA note, best way to iterate through this.
+	public T get(int index) throws IndexOutOfBoundsException 
 	{
+		if(index<0 || index>this.elementCount)
+			throw new IndexOutOfBoundsException();
+		Node result = head;
+				
 		
 		return null;
 	}
@@ -252,6 +265,29 @@ public class SinglyLinkedList<T> implements List<T>{
 			return temp;
 		}
 		
-		
+		/** 
+		 * Generates and returns a textual representation of the integers in this
+		 * linked list, in order.
+		 */
+		public String toString() {
+			// StringBuilder's append method is faster than String concatenation with + 
+			// because StringBuilder objects are mutable and String objects are immutable. 
+			// See https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/StringBuilder.html.
+			StringBuilder result = new StringBuilder();
+			Node temp = head;
+			while(temp != null) {
+				result.append(temp.data + " ");
+				temp = temp.next;
+			}
+			return result.toString();
+		}
+
 	}
+	public static void main(String[] args) {
+
+		SinglyLinkedList<Integer> l = new SinglyLinkedList<>();
+		l.addFirst(2);
+		l.toString();
+		
+}
 }
