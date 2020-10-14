@@ -152,7 +152,7 @@ public class SinglyLinkedList<E> implements List<E> {
 		} else {
 			Node tempRef = this.head;
 			this.head = head.next; // Update the reference
-			elementCount--; // Decreasing Size
+			elementCount--;        // Decreasing Size
 			return tempRef.data;
 		}
 
