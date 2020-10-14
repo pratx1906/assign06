@@ -2,9 +2,29 @@ package assign06;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class SinglyLinkedListTester {
+	
+	private SinglyLinkedList<Integer> intList;
+	private SinglyLinkedList<String> strList;
+	@BeforeEach
+	public void setUp() {
+		intList = new SinglyLinkedList<>();
+		strList = new SinglyLinkedList<>();
+		
+		intList.add(0, 1);
+		intList.add(1, 2);
+		intList.add(2, 4);
+		intList.add(3, 6);
+		intList.add(4, 8);
+		
+		strList.add(0, "a");
+		strList.add(0, "c");
+		strList.add(0, "e");
+		strList.add(0, "a");
+	}
 
 	@Test
 	void addFirstTest() {
