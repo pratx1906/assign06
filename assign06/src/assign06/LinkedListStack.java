@@ -17,7 +17,7 @@ public class LinkedListStack<T> implements Stack<T> {
 	 */
 	public LinkedListStack()
 	{
-		this.theStack = new SinglyLinkedList();
+		this.theStack = new SinglyLinkedList<T>();
 	}
 	
 	/**

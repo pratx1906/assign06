@@ -1,6 +1,8 @@
 package assign06;
 
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.Scanner;
 
 /**
  * Class containing the checkFile method for checking if the (, [, and { symbols
@@ -19,9 +21,44 @@ public class BalancedSymbolChecker {
 	 * @return a message indicating whether the input file has unmatched symbols
 	 * @throws FileNotFoundException if the file does not exist
 	 */
-	public static String checkFile(String filename) throws FileNotFoundException {
-		// FILL IN -- do not return null
-		return null;
+	public static String checkFile(String filename) throws FileNotFoundException 
+	{
+		String sentence;
+		int line = 0, colNum;
+		Scanner fileIn;
+		LinkedListStack<T> theStack = new LinkedListStack<T>();
+		
+		try
+		{
+			fileIn = new Scanner(new File(filename));
+			
+		}
+		catch(FileNotFoundException e)
+		{
+			throw new FileNotFoundException();
+		}
+		
+		while(fileIn.hasNext())
+		{
+			sentence = fileIn.next();
+			colNum = 1;
+			line++;
+			for(int i = 0; i < sentence.length(); i++)
+			{
+				if(sentence.charAt(i) == '{' || sentence.charAt(i) == '[' || sentence.charAt(i) == '(')
+				{
+					theStack.push(sentence.charAt(i));
+				}
+				else if(sentence.charAt(i) == '}' || sentence.charAt(i) == ']' || sentence.charAt(i) == ')')
+				{
+					if()
+				}
+			}
+		}
+		
+		fileIn.close();
+		
+		return allSymbolsMatch();
 	}
 
 	/**
