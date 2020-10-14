@@ -6,11 +6,11 @@ import java.util.NoSuchElementException;
  * 
  * @author Krummenacher && Dixit
  *
- * @param <E>
+ * @param <T>
  */
-public class LinkedListStack<E> implements Stack<E> {
+public class LinkedListStack<T> implements Stack<T> {
 
-	private SinglyLinkedList theStack;
+	private SinglyLinkedList<T> theStack;
 	
 	/**
 	 * 
@@ -42,12 +42,12 @@ public class LinkedListStack<E> implements Stack<E> {
 	 * @return the element at the top of the stack
 	 * @throws NoSuchElementException if the stack is empty
 	 */
-	public E peek() throws NoSuchElementException
+	public T peek() throws NoSuchElementException
 	{
 		if(isEmpty())
 			throw new NoSuchElementException();
 		else
-			return (E) this.theStack.getFirst();
+			return (T) this.theStack.getFirst();
 	}
 
 	/**
@@ -56,11 +56,11 @@ public class LinkedListStack<E> implements Stack<E> {
 	 * @return the element at the top of the stack
 	 * @throws NoSuchElementException if the stack is empty
 	 */
-	public E pop() throws NoSuchElementException
+	public T pop() throws NoSuchElementException
 	{
 		if(isEmpty())
 			throw new NoSuchElementException();
-		return (E) this.theStack.removeFirst();
+		return (T) this.theStack.removeFirst();
 	}
 
 	/**
@@ -69,7 +69,7 @@ public class LinkedListStack<E> implements Stack<E> {
 	 * @param element - the element to be added
 	 */
 	@Override
-	public void push(E element)
+	public void push(T element)
 	{
 		this.theStack.addFirst(element);
 	}
