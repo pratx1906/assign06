@@ -24,7 +24,7 @@ public class BalancedSymbolChecker {
 	public static String checkFile(String filename) throws FileNotFoundException 
 	{
 		String sentence;
-		int line = 0, colNum;
+		int lineNum = 0, colNum;				
 		Scanner fileIn;
 		LinkedListStack<T> theStack = new LinkedListStack<T>();
 		
@@ -38,20 +38,23 @@ public class BalancedSymbolChecker {
 			throw new FileNotFoundException();
 		}
 		
-		while(fileIn.hasNext())
+		while(fileIn.hasNextLine())
 		{
-			sentence = fileIn.next();
-			colNum = 1;
-			line++;
+	
+			sentence = fileIn.nextLine();
+			colNum = 0;
+			lineNum++;
 			for(int i = 0; i < sentence.length(); i++)
 			{
-				if(sentence.charAt(i) == '{' || sentence.charAt(i) == '[' || sentence.charAt(i) == '(')
+				if(sentence.charAt(i) == '{' || sentence.charAt(i) == '[' || sentence.charAt(i) == '(' || sentence.charAt(i) == '<')
 				{
 					theStack.push(sentence.charAt(i));
+					colNum = i;
 				}
-				else if(sentence.charAt(i) == '}' || sentence.charAt(i) == ']' || sentence.charAt(i) == ')')
+				else if(sentence.charAt(i) == ']' || sentence.charAt(i) == '>')
 				{
-					if()
+					if(theStack.peek() != sentence.charAt(i))
+						return unmatchedSymbol(lineNum, colNum, sentence.charAt(i), sentence.charAt(colNum));
 				}
 			}
 		}
