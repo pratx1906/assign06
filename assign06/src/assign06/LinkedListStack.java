@@ -3,7 +3,7 @@ package assign06;
 import java.util.NoSuchElementException;
 
 /**
- * 
+ * This is LinkedListStack it operates using singlylinkedlists.
  * @author Krummenacher && Dixit
  *
  * @param <T>
@@ -13,7 +13,7 @@ public class LinkedListStack<T> implements Stack<T> {
 	private SinglyLinkedList<T> theStack;
 	
 	/**
-	 * 
+	 * This is the constructor for LinkedListStack
 	 */
 	public LinkedListStack()
 	{

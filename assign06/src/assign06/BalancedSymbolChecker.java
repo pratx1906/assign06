@@ -98,14 +98,14 @@ public class BalancedSymbolChecker {
 						break;
 				}
 			}
-			
 		}
 		
 		fileIn.close();
-		if(!theStack.isEmpty())	//checks to see if the stack is full
-			return unmatchedSymbolAtEOF(theStack.pop());
-		else if(commentedOut)
+		if(commentedOut)				//checks if there are any unfinishedComment()
 			return unfinishedComment();
+		else if(!theStack.isEmpty())	//checks to see if the stack is full
+			return unmatchedSymbolAtEOF(theStack.pop());
+		
 		return allSymbolsMatch();
 	}
 
