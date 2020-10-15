@@ -13,6 +13,10 @@ import java.util.Scanner;
  */
 public class BalancedSymbolChecker {
 
+	public static void main(String[] args) throws FileNotFoundException
+	{
+		System.out.println(checkFile("src/assign06/Class1.txt"));
+	}
 	
 	/**
 	 * Generates a message indicating whether the input file has unmatched
@@ -48,7 +52,7 @@ public class BalancedSymbolChecker {
 			colNum = 0;						//resets line indicators, and steps to the next line.
 			lineNum++;
 		
-			sentence = sentence.substring(0, sentence.indexOf("//")); //edits out any single line comments
+			sentence = sentence.substring(0, sentence.indexOf("//") == -1 ? sentence.length() : sentence.indexOf("//")); //edits out any single line comments
 			sentence = sentence.replace("\\\"", "");				// removes any \"
 			sentence = sentence.replace("\\\'", "");				// removes any \'
 			
@@ -66,11 +70,11 @@ public class BalancedSymbolChecker {
 						break;
 					case '\"':				//skip past " and '
 						if(!commentedOut)
-							i =+ sentence.substring(i).indexOf('\"');
+							i =+ sentence.substring(i).indexOf('\"') == -1 ? 0 : sentence.indexOf("\"");
 						break;
 					case '\'':
 						if(!commentedOut)
-							i =+ sentence.substring(i).indexOf('\'');
+							i =+ sentence.substring(i).indexOf('\'') == -1 ? 0 : sentence.indexOf("\'");
 						break;
 					case '{':		//Pushes in chars into the stack
 						if(!commentedOut)	
@@ -85,15 +89,15 @@ public class BalancedSymbolChecker {
 							theStack.push('(');
 						break;
 					case '}':		//Pops out and compares chars
-						if(!(theStack.pop().equals('}') && commentedOut))
+						if(!theStack.pop().equals('{') && !commentedOut) 
 							return unmatchedSymbol(lineNum, i + 1, sentence.charAt(i), '}');
 						break;
 					case ']':
-						if(!(theStack.pop().equals(']') && commentedOut))
+						if(!theStack.pop().equals('[') && !commentedOut)
 							return unmatchedSymbol(lineNum, i + 1, sentence.charAt(i), ']');
 						break;
 					case ')':
-						if(!(theStack.pop().equals(')') && commentedOut))
+						if(!theStack.pop().equals('(') && !commentedOut)
 							return unmatchedSymbol(lineNum, i + 1, sentence.charAt(i), ')');
 						break;
 				}

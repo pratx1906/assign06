@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
  * @author Krummenacher && Dixit
  *
  */
-class BalancedSymbolCheckerTester
+class ClassX
 {
 	/**
 	 * this tests when the checkFile() method is not given a correct file.
@@ -31,7 +31,7 @@ class BalancedSymbolCheckerTester
 		String result = "", answer = "ERROR: Unmatched symbol at line 6 and column 1. Expected ), but read } instead.";
 		try
 		{
-			result = BalancedSymbolChecker.checkFile("Class1.java");
+			result = BalancedSymbolChecker.checkFile("src\\assign06\\Class1.txt");
 		} catch (FileNotFoundException e)
 		{
 			System.out.println("file does not exist");
@@ -116,7 +116,7 @@ class BalancedSymbolCheckerTester
 		String result = "", answer = "No errors found. All symbols match.";
 		try
 		{
-			result = BalancedSymbolChecker.checkFile("Class6.java");
+			result = BalancedSymbolChecker.checkFile("examples\\Class6.java");
 		} catch (FileNotFoundException e)
 		{
 			System.out.println("file does not exist");
@@ -133,7 +133,7 @@ class BalancedSymbolCheckerTester
 		String result = "", answer = "ERROR: Unmatched symbol at line 3 and column 33. Expected ], but read ) instead.";
 		try
 		{
-			result = BalancedSymbolChecker.checkFile("Class7.java");
+			result = BalancedSymbolChecker.checkFile("examples\\Class7.java");
 		} catch (FileNotFoundException e)
 		{
 			System.out.println("file does not exist");
@@ -150,7 +150,7 @@ class BalancedSymbolCheckerTester
 		String result = "", answer = "ERROR: Unmatched symbol at line 5 and column 30. Expected }, but read ) instead.";
 		try
 		{
-			result = BalancedSymbolChecker.checkFile("Class8.java");
+			result = BalancedSymbolChecker.checkFile("examples\\Class8.java");
 		} catch (FileNotFoundException e)
 		{
 			System.out.println("file does not exist");
@@ -167,7 +167,7 @@ class BalancedSymbolCheckerTester
 		String result = "", answer = "ERROR: Unmatched symbol at line 3 and column 33. Expected ), but read ] instead.";
 		try
 		{
-			result = BalancedSymbolChecker.checkFile("Class9.java");
+			result = BalancedSymbolChecker.checkFile("examples\\Class9.java");
 		} catch (FileNotFoundException e)
 		{
 			System.out.println("file does not exist");
@@ -184,7 +184,7 @@ class BalancedSymbolCheckerTester
 		String result = "", answer = "ERROR: Unmatched symbol at line 5 and column 10. Expected }, but read ] instead.";
 		try
 		{
-			result = BalancedSymbolChecker.checkFile("Class10.java");
+			result = BalancedSymbolChecker.checkFile("examples\\Class10.java");
 		} catch (FileNotFoundException e)
 		{
 			System.out.println("file does not exist");
@@ -201,7 +201,7 @@ class BalancedSymbolCheckerTester
 		String result = "", answer = "ERROR: Unmatched symbol at the end of file. Expected }.";
 		try
 		{
-			result = BalancedSymbolChecker.checkFile("Class11.java");
+			result = BalancedSymbolChecker.checkFile("examples\\Class11.java");
 		} catch (FileNotFoundException e)
 		{
 			System.out.println("file does not exist");
@@ -218,7 +218,7 @@ class BalancedSymbolCheckerTester
 		String result = "", answer = "No errors found. All symbols match.";
 		try
 		{
-			result = BalancedSymbolChecker.checkFile("Class12.java");
+			result = BalancedSymbolChecker.checkFile("examples\\Class12.java");
 		} catch (FileNotFoundException e)
 		{
 			System.out.println("file does not exist");
@@ -235,7 +235,7 @@ class BalancedSymbolCheckerTester
 		String result = "", answer = "No errors found. All symbols match.";
 		try
 		{
-			result = BalancedSymbolChecker.checkFile("Class13.java");
+			result = BalancedSymbolChecker.checkFile("examples\\Class13.java");
 		} catch (FileNotFoundException e)
 		{
 			System.out.println("file does not exist");
@@ -252,7 +252,7 @@ class BalancedSymbolCheckerTester
 		String result = "", answer = "No errors found. All symbols match.";
 		try
 		{
-			result = BalancedSymbolChecker.checkFile("Class14.java");
+			result = BalancedSymbolChecker.checkFile("examples\\Class14.java");
 		} catch (FileNotFoundException e)
 		{
 			System.out.println("file does not exist");
